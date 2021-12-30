@@ -1,0 +1,14 @@
+// Typography
+
+@mixin typography--body() {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+// Utils
+
+@mixin is-bold {
+  font-weight: 700;
+}

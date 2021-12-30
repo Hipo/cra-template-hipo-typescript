@@ -1,0 +1,34 @@
+.is-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-vertically-centered {
+  display: flex;
+  align-items: center;
+}
+
+.has-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.is-aligned-right {
+  justify-self: right;
+
+  text-align: right;
+}
+
+.is-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap-flex {
+  flex-wrap: wrap;
+}
+
+.is-centered-text {
+  text-align: center;
+}

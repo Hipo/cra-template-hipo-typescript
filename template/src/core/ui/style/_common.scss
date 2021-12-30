@@ -1,0 +1,21 @@
+@import "../typography/_typography-mixins.scss";
+@import "../style/media-queries";
+
+:root {
+  --background-color: var(--grey-30);
+}
+
+.is-bold {
+  &,
+  &.typography {
+    @include is-bold();
+  }
+}
+
+.hide-on-sm {
+  @include for-small-screens {
+    /* stylelint-disable declaration-no-important */
+    display: none !important;
+    /* stylelint-enable declaration-no-important */
+  }
+}
