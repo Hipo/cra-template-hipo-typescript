@@ -1,52 +1,39 @@
-# Getting Started with Create React App
+# CRA Hipo TypeScript Template App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Short description of the project
 
-## Available Scripts
+- Web App: [app.domain.com](#)
+- Design: [Figma](#)
+- Codebase: [Dashboard](#)
 
-In the project directory, you can run:
+## Development
 
-### `npm start`
+This project was created with [Create React App](https://github.com/facebook/create-react-app). Therefore, the usual react-scripts are available in this project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Install dependencies
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `npm install`
 
-### `npm test`
+### Start the development environment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `npm start`
 
-### `npm run build`
+### Deploy
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Either GitHub workflows or CircleCI is used for deployments. Check [Setting Up a New Project](https://github.com/Hipo/web-handbook/blob/master/setting-up-a-new-project.md) section in our handbook for more details.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Husky and lint-staged
 
-Alternatively, you can get environment specific builds, for example:
+[Husky](https://github.com/typicode/husky) is configured with [lint-staged](https://github.com/okonet/lint-staged) to run ESLint, Stylelint and Prettier on the staged files, and then type-check the application before committing your changes.
 
-```sh
-npm run build:staging
-```
+## Contribution
 
-will create a build using staging environment variables
+All development branches should be checked out from `next-release` branch and pull requests should be opened against the `next-release` branch.
 
-### `npm run eject`
+### Versioning
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+We follow [SemVer](https://semver.org/) convention to update the version for each release.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Commit Messages
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+We adapted [Conventional Commits specification](https://www.conventionalcommits.org/) to create an easy to read commit history. Please refer to this specification and structure your commits in a compatible way.
