@@ -1,7 +1,8 @@
 // 3rd party CSS imports should come here
-// import "@hipo/react-ui-toolkit/dist/main.css";
+import "@hipo/react-ui-toolkit/dist/main.css";
 
 import "./core/ui/style/override/_override.scss";
+import "./core/ui/style/override/hipo-ui-toolkit/_button.scss";
 import "./core/ui/style/_align.scss";
 import "./core/ui/style/_measure.scss";
 import "./core/ui/style/_common.scss";
