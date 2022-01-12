@@ -16,7 +16,7 @@ interface FetcherConfig {
 }
 
 class Fetcher {
-  config: FetcherConfig;
+  readonly config: FetcherConfig;
 
   constructor(config: FetcherConfig) {
     this.config = {
