@@ -1,0 +1,24 @@
+interface ListRequestResponse<Result> {
+    count: number;
+    next: null | string;
+    previous: null | string;
+    results: Result[];
+  }
+  
+  type ListRequestParams<Ordering = string> = Partial<{
+    ordering: Ordering;
+    limit: "all" | number;
+    offset: number;
+    search: string;
+  }>;
+  
+  interface HipoApiErrorDetailShape {
+    [x: string]: undefined | any;
+  }
+  
+  interface HipoApiErrorShape {
+    type: ArrayToUnion<typeof ERROR_TYPES>;
+    detail: HipoApiErrorDetailShape;
+    fallback_message: string;
+  }
+  
