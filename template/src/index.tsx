@@ -2,7 +2,6 @@
 import "@hipo/react-ui-toolkit/dist/main.css";
 
 import "./core/ui/style/override/_override.scss";
-import "./core/ui/style/override/hipo-ui-toolkit/_button.scss";
 import "./core/ui/style/_align.scss";
 import "./core/ui/style/_measure.scss";
 import "./core/ui/style/_common.scss";
@@ -10,8 +9,7 @@ import "./core/ui/typography/_typography.scss";
 import "./core/ui/style/color/_global-colors.scss";
 
 // 3rd party CSS override imports should come here
-// import "./core/ui/style/override/hipo-ui-toolkit/_input.scss";
-// import "./core/ui/style/override/hipo-ui-toolkit/_checkbox-input.scss";
+import "./core/ui/style/override/hipo-ui-toolkit/_button.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
