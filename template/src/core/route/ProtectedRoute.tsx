@@ -1,26 +1,27 @@
-import { Fragment } from "react";
-import { Redirect, Route, RouteProps } from "react-router";
-import {LocationDescriptor} from "history";
+import {Fragment} from "react";
+import {Navigate, RouteProps} from "react-router";
+import {To} from "history";
 
 import ROUTES from "./routes";
 import {useAppContext} from "../app/AppContext";
 
-type ProtectedRouteProps =  RouteProps & {
-  redirectTo?: LocationDescriptor;
+type ProtectedRouteProps = RouteProps & {
+  children: React.ReactNode;
+  redirectTo?: To;
   fallback?: React.ReactNode;
 };
 
-function ProtectedRoute({redirectTo, fallback, ...otherProps}: ProtectedRouteProps) {
+function ProtectedRoute({redirectTo, fallback, children}: ProtectedRouteProps) {
   const {state: appState} = useAppContext();
 
   if (appState.hasLoggedIn) {
-    return <Route {...otherProps} />;
+    return <Fragment>{children}</Fragment>;
   }
 
   return fallback ? (
     <Fragment>{fallback}</Fragment>
   ) : (
-    <Redirect to={redirectTo || ROUTES.HOME} />
+    <Navigate to={redirectTo || ROUTES.HOME} replace={true} />
   );
 }
 

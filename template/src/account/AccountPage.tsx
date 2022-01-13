@@ -1,4 +1,6 @@
-import {useHistory} from "react-router";
+import "./_account-page.scss";
+
+import {useNavigate} from "react-router";
 
 import PageContent from "../component/page/content/PageContent";
 import Page from "../component/page/Page";
@@ -7,18 +9,17 @@ import ROUTES from "../core/route/routes";
 
 function AccountPage() {
   const {state, dispatch} = useAppContext();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Page title={"Account"}>
       <PageContent>
         <h2>{"You are logged in!"}</h2>
-
         <p>{"This is the account page of the application."}</p>
-
-        <h3 style={{marginTop: "20px"}}>{"Click here to logout"}</h3>
-        
-        <button onClick={handleLogout} style={{marginTop: "15px"}}>{"Logout"}</button>
+        <div className={"account-page__logout-container"}>
+          <h3>{"Click here to logout"}</h3>
+          <button onClick={handleLogout}>{"Logout"}</button>
+        </div>
       </PageContent>
     </Page>
   );
@@ -30,7 +31,7 @@ function AccountPage() {
       });
     }
 
-    history.push(ROUTES.HOME);
+    navigate(ROUTES.HOME);
   }
 }
 

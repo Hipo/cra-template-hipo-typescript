@@ -1,11 +1,16 @@
+import "./_home-page.scss";
+
+import {Fragment} from "react";
+import { useNavigate } from "react-router";
+
 import {useAppContext} from "../core/app/AppContext";
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
+import ROUTES from "../core/route/routes";
 
 function HomePage() {
   const {state, dispatch} = useAppContext();
-
-  console.log(state.hasLoggedIn);
+  const navigate = useNavigate();
 
   return (
     <Page title={"Home"}>
@@ -19,12 +24,12 @@ function HomePage() {
         </p>
 
         {state.hasLoggedIn ? (
-          <h3 style={{marginTop: "20px"}}>{"You are logged in!"}</h3>
-          ) : (
-          <div>
-            <h3 style={{marginTop: "20px"}}>{"Login to access your account"}</h3>
+          <Fragment />
+        ) : (
+          <div className={"home-page__login-container"}>
+            <h3>{"Login to go to your account"}</h3>
 
-            <button onClick={handleLogin} style={{marginTop: "15px"}}>
+            <button onClick={handleLogin}>
               {"Login"}
             </button>
           </div>
@@ -39,6 +44,8 @@ function HomePage() {
         type: "SET_HAS_LOGGED_IN"
       });
     }
+
+    navigate(ROUTES.ACCOUNT);
   }
 }
 
