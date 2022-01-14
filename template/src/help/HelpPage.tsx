@@ -1,11 +1,11 @@
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
 
-function AboutPage() {
+function HelpPage() {
   return (
-    <Page title={"About"}>
+    <Page title={"Help"}>
       <PageContent>
-        <h1>{"About"}</h1>
+        <h1>{"Help"}</h1>
 
         <p>{"This app was created using Hipo React TypeScript template."}</p>
       </PageContent>
@@ -13,4 +13,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default HelpPage;

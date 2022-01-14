@@ -6,8 +6,8 @@ import ROUTES from "../route/routes";
 import HomePage from "../../home/HomePage";
 import NotFoundPage from "../route/not-found-page/NotFoundPage";
 
-const AboutPage = lazy(
-  () => import(/* webpackChunkName: "about-page" */ "../../about/AboutPage")
+const HelpPage = lazy(
+  () => import(/* webpackChunkName: "help-page" */ "../../help/HelpPage")
 );
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         </Route>
 
         <Route path={ROUTES.HELP} exact={true}>
-          <AboutPage />
+          <HelpPage />
         </Route>
 
         <Route path={"*"}>
