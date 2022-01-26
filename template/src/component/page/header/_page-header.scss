@@ -13,8 +13,14 @@
 }
 
 .page-header__hipo-brand {
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 75px auto;
+  gap: 10px;
+}
+
+.page-header__hipo-brand__logo {
+  width: 75px;
 }
 
 .page-header__content {

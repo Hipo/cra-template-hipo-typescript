@@ -15,7 +15,7 @@ function PageHeader() {
     <header className={"page-header"}>
       <div className={"page-header__content"}>
         <div className={"page-header__hipo-brand"}>
-          <HipoLogo />
+          <HipoLogo className={"page-header__hipo-brand__logo"} />
 
           <h1>{"Hipo Web App"}</h1>
         </div>
