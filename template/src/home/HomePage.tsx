@@ -29,13 +29,13 @@ function HomePage() {
         <div className={"home-page__login-container"}>
           {!hasLoggedIn && <h3>{"Login to go to account page"}</h3>}
 
-          <button onClick={handleLogin}>{hasLoggedIn ? "Logout" : "Login"}</button>
+          <button onClick={toggleLoginState}>{hasLoggedIn ? "Logout" : "Login"}</button>
         </div>
       </PageContent>
     </Page>
   );
 
-  function handleLogin() {
+  function toggleLoginState() {
     dispatch({
       type: "SET_HAS_LOGGED_IN"
     });
