@@ -14,10 +14,13 @@ function AccountPage() {
   return (
     <Page title={"Account"}>
       <PageContent>
-        <h2>{"You are logged in!"}</h2>
+        <h1>{"Account"}</h1>
+
         <p>{"This is the account page of the application."}</p>
+
         <div className={"account-page__logout-container"}>
           <h3>{"Click here to logout"}</h3>
+
           <button onClick={handleLogout}>{"Logout"}</button>
         </div>
       </PageContent>

@@ -1,10 +1,9 @@
 import {createContext, Dispatch, ReactNode, useContext, useReducer} from "react";
 
-import {appState} from "./appState";
-import {appStateReducer, AppStateReducerAction} from "./appStateReducer";
+import {appStateReducer, AppStateReducerAction, initialAppState} from "./appStateReducer";
 
 const initialAppContextValue = {
-  state: appState,
+  state: initialAppState,
   dispatch: (() => undefined) as Dispatch<AppStateReducerAction>
 };
 
@@ -13,7 +12,7 @@ const AppContext = createContext(initialAppContextValue);
 AppContext.displayName = "AppContext";
 
 function AppContextProvider({children}: {children: ReactNode}) {
-  const [state, dispatch] = useReducer(appStateReducer, appState);
+  const [state, dispatch] = useReducer(appStateReducer, initialAppState);
 
   return (
     <AppContext.Provider

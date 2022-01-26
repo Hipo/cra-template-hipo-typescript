@@ -1,10 +1,12 @@
-import {appState} from "./appState";
+const initialAppState = {
+  hasLoggedIn: false
+};
 
 export type AppStateReducerAction = {
   type: "SET_HAS_LOGGED_IN";
 };
 
-function appStateReducer(state: typeof appState, action: AppStateReducerAction) {
+function appStateReducer(state: typeof initialAppState, action: AppStateReducerAction) {
   let newState = state;
 
   switch (action.type) {
@@ -25,4 +27,4 @@ function appStateReducer(state: typeof appState, action: AppStateReducerAction) 
   return newState;
 }
 
-export {appStateReducer, appState};
+export {appStateReducer, initialAppState};
