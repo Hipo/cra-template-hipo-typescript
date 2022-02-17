@@ -9,7 +9,7 @@ import {useAppContext} from "../../../core/app/AppContext";
 
 function PageHeader() {
   const {state} = useAppContext();
-  const headerRoutes = setHeaderRoutes();
+  const headerRoutes = getNavigationItems();
 
   return (
     <header className={"page-header"}>
@@ -31,7 +31,7 @@ function PageHeader() {
     </header>
   );
 
-  function setHeaderRoutes() {
+  function getNavigationItems() {
     return state.hasLoggedIn
       ? Object.entries(ROUTES)
       : Object.entries(ROUTES).filter(([, routePath]) => routePath !== "/account");
