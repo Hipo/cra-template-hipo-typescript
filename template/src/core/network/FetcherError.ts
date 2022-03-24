@@ -2,13 +2,15 @@ import {FetcherErrorStatus} from "./fetcherTypes";
 
 class FetcherError extends Error {
   data: any;
-  status: FetcherErrorStatus;
+  type: FetcherErrorStatus;
+  statusCode: number;
 
   constructor(
     options: {
-      status: FetcherErrorStatus;
+      type: FetcherErrorStatus;
       data: any;
       message: string;
+      statusCode: number;
     },
     ...args: any[]
   ) {
@@ -19,9 +21,10 @@ class FetcherError extends Error {
     }
 
     this.name = "FetcherError";
-    this.status = options.status;
+    this.type = options.type;
     this.data = options.data;
     this.message = options.message;
+    this.statusCode = options.statusCode;
   }
 }
 

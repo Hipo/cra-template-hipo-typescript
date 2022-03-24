@@ -1,4 +1,4 @@
-import {isObject} from "../util/object/objectUtils";
+import {isRecord} from "../util/object/objectUtils";
 import {stringifySearchParams} from "../util/url/urlUtils";
 import FetcherError from "./FetcherError";
 import {fetchJSONMiddleware} from "./fetcherUtils";
@@ -36,15 +36,24 @@ class Fetcher {
       responseMiddlewares?: FetcherMiddleware[];
       rejectMiddlewares?: FetcherMiddleware[];
       body?: any;
+      bodyParser?: (body: any) => any;
     },
     path: string
   ): Promise<Response> {
-    const {baseUrl, initOptions, bodyParser} = this.config;
-    const {params, responseMiddlewares, rejectMiddlewares, body, ...otherOptions} =
-      options;
+    const {baseUrl, initOptions, bodyParser: bodyParserFromConfig} = this.config;
+    const {
+      params,
+      responseMiddlewares,
+      rejectMiddlewares,
+      body,
+      bodyParser: bodyParserFromOptions,
+      ...otherOptions
+    } = options;
+
+    const bodyParser = bodyParserFromOptions || bodyParserFromConfig;
 
     const url =
-      isObject(params) && Object.keys(params).length
+      isRecord(params) && Object.keys(params).length
         ? `${baseUrl}${path}?${stringifySearchParams(params)}`
         : `${baseUrl}${path}`;
 
@@ -59,18 +68,20 @@ class Fetcher {
         if (error.name === "AbortError") {
           return Promise.reject(
             new FetcherError({
-              status: "Cancelled",
+              type: "Cancelled",
               data: error,
-              message: "Request cancelled"
+              message: "Request cancelled",
+              statusCode: NaN
             })
           );
         }
 
         return Promise.reject(
           new FetcherError({
-            status: "ConnectionError",
+            type: "ConnectionError",
             data: error,
-            message: "Network error. Try again later."
+            message: "Network error. Try again later.",
+            statusCode: NaN
           })
         );
       })
@@ -98,15 +109,11 @@ class Fetcher {
       })
       .catch(async (errorResponse) => {
         if (errorResponse.status === "Cancelled") {
-          return Promise.reject();
+          return Promise.reject(errorResponse);
         }
 
         const middlewares = rejectMiddlewares || this.config.rejectMiddlewares;
-        let finalError = new FetcherError({
-          status: errorResponse.status,
-          data: errorResponse,
-          message: `${otherOptions.method} ${url} request failed`
-        });
+        let finalError;
 
         if (middlewares) {
           for (const middleware of middlewares) {

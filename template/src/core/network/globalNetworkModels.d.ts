@@ -13,7 +13,7 @@ type ListRequestParams<Ordering = string> = Partial<{
 }>;
 
 interface HipoApiErrorShape {
-  type: ArrayToUnion<typeof ERROR_TYPES>;
+  type: string;
   detail: Record<string, undefined | any>;
   fallback_message: string;
 }

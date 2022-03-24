@@ -4,26 +4,26 @@
  * @returns {boolean} Returns `true` if `value` is an object and not an array or null, else returns `false`.
  * @example
  *
- * isObject({})
+ * isRecord({})
  * // => true
  *
- * isObject({a: "1"})
+ * isRecord({a: "1"})
  * // => true
  *
- * isObject(new Foo);
+ * isRecord(new Foo);
  * // => true
  *
- * isObject([1, 2, 3])
+ * isRecord([1, 2, 3])
  * // => false
  *
- * isObject(Function)
+ * isRecord(Function)
  * // => false
  *
- * isObject(null)
+ * isRecord(null)
  * // => false
  */
- function isObject(x: unknown): x is Record<string, any> {
-    return typeof x === "object" && Boolean(x) && !Array.isArray(x);
-  }
-  
-  export {isObject};
+function isRecord(x: unknown): x is Record<string, any> {
+  return typeof x === "object" && Boolean(x) && !Array.isArray(x);
+}
+
+export {isRecord};

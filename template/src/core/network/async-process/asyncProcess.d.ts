@@ -2,12 +2,7 @@ interface AsyncProcessState<Data = any, Payload = any> {
   isRequestPending: boolean;
   isRequestFetched: boolean;
   data: Data | null;
-  error:
-    | (Error & {
-        data: any;
-        status: number;
-      })
-    | null;
+  error: Error | null;
   requestPayload?: Payload;
 }
 

@@ -56,7 +56,9 @@ function HomePage() {
             <p>{state.data?.description}</p>
             <br />
 
-            <a href={state.data?.blog}>{state.data?.blog}</a>
+            <a href={state.data?.blog} target={"_blank"} rel={"noreferrer"}>
+              {state.data?.blog}
+            </a>
           </div>
         );
         break;
