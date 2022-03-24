@@ -85,15 +85,12 @@ class Fetcher {
           })
         );
       })
-
       .then((response) => {
         if (response.ok) {
           return Promise.resolve(response);
         }
 
-        return response.text().then((text) => {
-          throw JSON.parse(text);
-        });
+        return Promise.reject(response);
       })
       .then(async (response) => {
         const middlewares = responseMiddlewares || this.config.responseMiddlewares;
@@ -114,6 +111,27 @@ class Fetcher {
 
         const middlewares = rejectMiddlewares || this.config.rejectMiddlewares;
         let finalError;
+
+        if (typeof errorResponse.json === "function") {
+          const errorResponseJSON = await errorResponse.json();
+          finalError = new FetcherError({
+            statusCode: errorResponse.status,
+            type: errorResponseJSON.type || "ApiError",
+            data: errorResponseJSON,
+            message:
+              // TODO: generateErrorMessage(errorResponseJSON) ||
+              `${otherOptions.method} ${url} request failed`
+          });
+        } else {
+          finalError = new FetcherError({
+            statusCode: errorResponse.status,
+            type: "ApiError",
+            data: errorResponse,
+            message:
+              // TODO: generateErrorMessage(errorResponse) ||
+              `${otherOptions.method} ${url} request failed`
+          });
+        }
 
         if (middlewares) {
           for (const middleware of middlewares) {

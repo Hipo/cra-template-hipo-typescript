@@ -11,9 +11,17 @@ interface UseAsyncProcessOptions<Data = any> {
   shouldResetDataWhenPending?: boolean;
 }
 
+// type AsyncProcessCallBack<Data extends any> = <Response extends Data>(
+//   promise: Promise<Response>,
+//   responseSerializer?: (response: Response) => Data
+// ) => Promise<Response>;
+
 type AsyncProcessCallBack<Data extends any> = <Response extends Data>(
   promise: Promise<Response>,
-  responseSerializer?: (response: Response) => Data
+  options?: {
+    forceResetPreviousAsyncState?: boolean;
+    responseSerializer?: (response: Response) => Data;
+  }
 ) => Promise<Response>;
 
 type AsyncStateSetter<Data> = React.Dispatch<

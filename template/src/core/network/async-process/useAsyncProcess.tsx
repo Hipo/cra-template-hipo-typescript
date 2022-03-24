@@ -1,13 +1,7 @@
 import {useCallback, useEffect, useRef, useState} from "react";
 
 import useOnUnmount from "../../util/hook/useOnUnmount";
-
-const INITIAL_ASYNC_PROCESS_STATE: AsyncProcessState = {
-  isRequestPending: false,
-  isRequestFetched: false,
-  data: null,
-  error: null
-};
+import {INITIAL_ASYNC_PROCESS_STATE} from "./asyncProcessConstants";
 
 function useAsyncProcess<Data extends any>(options?: UseAsyncProcessOptions<Data>) {
   const {initialState, shouldResetDataWhenPending = true} = options || {};
@@ -22,11 +16,16 @@ function useAsyncProcess<Data extends any>(options?: UseAsyncProcessOptions<Data
   );
 
   const runAsyncProcess: AsyncProcessCallBack<Data> = useCallback(
-    (promise, responseSerializer) => {
+    (promise, asyncCallbackOptions) => {
+      const shouldReset =
+        typeof asyncCallbackOptions?.forceResetPreviousAsyncState === "boolean"
+          ? asyncCallbackOptions.forceResetPreviousAsyncState
+          : shouldResetDataWhenPending;
+
       asyncStateSetter({
         isRequestPending: true,
-        isRequestFetched: false,
-        data: shouldResetDataWhenPending ? null : latestDataRef.current,
+        isRequestFetched: !shouldReset,
+        data: shouldReset ? null : latestDataRef.current,
         error: null
       });
 
@@ -35,11 +34,14 @@ function useAsyncProcess<Data extends any>(options?: UseAsyncProcessOptions<Data
           asyncStateSetter({
             isRequestPending: false,
             isRequestFetched: true,
-            data: responseSerializer ? responseSerializer(response) : response,
+            data: asyncCallbackOptions?.responseSerializer
+              ? asyncCallbackOptions.responseSerializer(response)
+              : response,
             error: null
           });
         })
         .catch((error) => {
+          console.error(error);
           asyncStateSetter({
             isRequestPending: false,
             isRequestFetched: true,
@@ -69,4 +71,3 @@ function useAsyncProcess<Data extends any>(options?: UseAsyncProcessOptions<Data
 }
 
 export default useAsyncProcess;
-export {INITIAL_ASYNC_PROCESS_STATE};

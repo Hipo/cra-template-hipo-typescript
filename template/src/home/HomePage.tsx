@@ -3,9 +3,9 @@ import {Fragment, useEffect} from "react";
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
 import useAsyncProcess from "../core/network/async-process/useAsyncProcess";
-import organizationApi from "../organization/api/organizationApi";
 import AsyncContent, {AsyncContentStatus} from "../component/async-content/AsyncContent";
-import {Organization} from "../organization/api/organizationApiModels";
+import organizationApi from "../examples/organization/api/organizationApi";
+import {Organization} from "../examples/organization/api/organizationApiModels";
 
 function HomePage() {
   const {state, runAsyncProcess} = useAsyncProcess<Organization>();

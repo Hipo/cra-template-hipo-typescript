@@ -1,4 +1,4 @@
-import GithubApi from "../../core/network/githubApi";
+import GithubApi from "../../githubApi";
 import {Organization} from "./organizationApiModels";
 
 const ORGANIZATION_API_ROOT = "orgs/";
