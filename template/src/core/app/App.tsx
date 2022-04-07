@@ -1,18 +1,13 @@
 import {lazy, Suspense} from "react";
 import {Switch, Route} from "react-router-dom";
 
-import AboutPage from "../../about/AboutPage";
 import RouteLoading from "../route/loading/RouteLoading";
 import ROUTES from "../route/routes";
+import HomePage from "../../home/HomePage";
+import NotFoundPage from "../route/not-found-page/NotFoundPage";
 
-const HomePage = lazy(
-  () => import(/* webpackChunkName: "home-page" */ "../../home/HomePage")
-);
-const NotFoundPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "not-found-page" */ "../route/not-found-page/NotFoundPage"
-    )
+const HelpPage = lazy(
+  () => import(/* webpackChunkName: "help-page" */ "../../help/HelpPage")
 );
 
 function App() {
@@ -24,7 +19,7 @@ function App() {
         </Route>
 
         <Route path={ROUTES.HELP} exact={true}>
-          <AboutPage />
+          <HelpPage />
         </Route>
 
         <Route path={"*"}>
