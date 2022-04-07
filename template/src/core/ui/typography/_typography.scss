@@ -1,0 +1,10 @@
+@import "./typography-mixins";
+
+.typography {
+  // break if the entire word cannot be placed on its own line without overflowing
+  overflow-wrap: anywhere;
+}
+
+.typography--body {
+  @include typography--body();
+}

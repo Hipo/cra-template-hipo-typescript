@@ -1,0 +1,14 @@
+@import "./_media-queries.scss";
+
+:root {
+  --page-content-max-width: 1110px;
+  --page-header-height: 96px;
+  --page-header-z-index: 1;
+  --page-body-horizontal-padding: 40px;
+}
+
+@include for-small-screens {
+  :root {
+    --page-content-max-width: 100%;
+  }
+}
