@@ -20,17 +20,13 @@ function HomePage() {
         <h3>{"Hipo - React UI Toolkit Component Examples"}</h3>
 
         <div>
-          <HipoButton type={"button"} onClick={onClick}>
-            {"Click Me"}
-          </HipoButton>
+          <HipoButton onClick={onClick}>{"Click Me"}</HipoButton>
 
-          <HipoButton type={"button"} onClick={onClick} isDisabled={true}>
+          <HipoButton onClick={onClick} isDisabled={true}>
             {"Click Me - isDisabled"}
           </HipoButton>
 
-          <HipoButton type={"button"} shouldDisplaySpinner={true}>
-            {"With Spinner"}
-          </HipoButton>
+          <HipoButton shouldDisplaySpinner={true}>{"With Spinner"}</HipoButton>
         </div>
       </PageContent>
     </Page>
