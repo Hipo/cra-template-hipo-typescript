@@ -1,18 +1,14 @@
 import "./_home-page.scss";
 
-import {useNavigate} from "react-router";
-
 import {useAppContext} from "../core/app/AppContext";
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
-import ROUTES from "../core/route/routes";
 
 function HomePage() {
   const {
     state: {account},
     dispatch
   } = useAppContext();
-  const navigate = useNavigate();
 
   return (
     <Page title={"Home"}>
@@ -27,7 +23,7 @@ function HomePage() {
         </p>
 
         <div className={"home-page__login-container"}>
-          {!account && <h3>{"Login to go to account page"}</h3>}
+          {account ? <h3>{"Click here to logout"}</h3> : <h3>{"Click here to login"}</h3>}
 
           <button onClick={toggleLoginState}>{account ? "Logout" : "Login"}</button>
         </div>
@@ -42,10 +38,6 @@ function HomePage() {
         ? null
         : {hipo: "https://github.com/Hipo/cra-template-hipo-typescript"}
     });
-    
-    if (account) {
-      navigate(ROUTES.ACCOUNT);
-    }
   }
 }
 
