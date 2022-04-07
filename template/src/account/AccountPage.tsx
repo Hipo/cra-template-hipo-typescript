@@ -1,15 +1,11 @@
 import "./_account-page.scss";
 
-import {useNavigate} from "react-router";
-
 import PageContent from "../component/page/content/PageContent";
 import Page from "../component/page/Page";
 import {useAppContext} from "../core/app/AppContext";
-import ROUTES from "../core/route/routes";
 
 function AccountPage() {
-  const {state, dispatch} = useAppContext();
-  const navigate = useNavigate();
+  const {dispatch} = useAppContext();
 
   return (
     <Page title={"Account"}>
@@ -28,13 +24,10 @@ function AccountPage() {
   );
 
   function handleLogout() {
-    if (state.hasLoggedIn) {
-      dispatch({
-        type: "SET_HAS_LOGGED_IN"
-      });
-    }
-
-    navigate(ROUTES.HOME);
+    dispatch({
+      type: "SET_HAS_LOGGED_IN",
+      account: null
+    });
   }
 }
 

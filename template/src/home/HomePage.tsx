@@ -9,7 +9,7 @@ import ROUTES from "../core/route/routes";
 
 function HomePage() {
   const {
-    state: {hasLoggedIn},
+    state: {account},
     dispatch
   } = useAppContext();
   const navigate = useNavigate();
@@ -27,9 +27,9 @@ function HomePage() {
         </p>
 
         <div className={"home-page__login-container"}>
-          {!hasLoggedIn && <h3>{"Login to go to account page"}</h3>}
+          {!account && <h3>{"Login to go to account page"}</h3>}
 
-          <button onClick={toggleLoginState}>{hasLoggedIn ? "Logout" : "Login"}</button>
+          <button onClick={toggleLoginState}>{account ? "Logout" : "Login"}</button>
         </div>
       </PageContent>
     </Page>
@@ -37,10 +37,13 @@ function HomePage() {
 
   function toggleLoginState() {
     dispatch({
-      type: "SET_HAS_LOGGED_IN"
+      type: "SET_HAS_LOGGED_IN",
+      account: account
+        ? null
+        : {hipo: "https://github.com/Hipo/cra-template-hipo-typescript"}
     });
-
-    if (!hasLoggedIn) {
+    
+    if (account) {
       navigate(ROUTES.ACCOUNT);
     }
   }

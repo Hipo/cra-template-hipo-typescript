@@ -1,9 +1,10 @@
 const initialAppState = {
-  hasLoggedIn: false
+  account: null as null | Record<string, any>
 };
 
 export type AppStateReducerAction = {
   type: "SET_HAS_LOGGED_IN";
+  account: null | Record<string, any>;
 };
 
 function appStateReducer(state: typeof initialAppState, action: AppStateReducerAction) {
@@ -11,11 +12,10 @@ function appStateReducer(state: typeof initialAppState, action: AppStateReducerA
 
   switch (action.type) {
     case "SET_HAS_LOGGED_IN": {
-      const newValue = !state.hasLoggedIn;
 
       newState = {
         ...state,
-        hasLoggedIn: newValue
+        account: action.account
       };
       break;
     }

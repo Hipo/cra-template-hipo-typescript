@@ -32,7 +32,7 @@ function PageHeader() {
   );
 
   function getNavigationItems() {
-    return state.hasLoggedIn
+    return state.account
       ? Object.entries(ROUTES)
       : Object.entries(ROUTES).filter(([, routePath]) => routePath !== "/account");
   }

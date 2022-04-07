@@ -3,7 +3,7 @@ import {Routes, Route} from "react-router-dom";
 
 import AccountPage from "../../account/AccountPage";
 import RouteLoading from "../route/loading/RouteLoading";
-import ProtectedRoute from "../route/ProtectedRoute";
+import RequireAccount from "../route/RequireAccount";
 import ROUTES from "../route/routes";
 import {AppContextProvider} from "./AppContext";
 import HomePage from "../../home/HomePage";
@@ -25,9 +25,9 @@ function App() {
           <Route
             path={ROUTES.ACCOUNT}
             element={
-              <ProtectedRoute>
+              <RequireAccount>
                 <AccountPage />
-              </ProtectedRoute>
+              </RequireAccount>
             }
           />
 

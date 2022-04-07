@@ -5,16 +5,16 @@ import {To} from "history";
 import ROUTES from "./routes";
 import {useAppContext} from "../app/AppContext";
 
-type ProtectedRouteProps = RouteProps & {
+type RequireAccountProps = RouteProps & {
   children: React.ReactNode;
   redirectTo?: To;
   fallback?: React.ReactNode;
 };
 
-function ProtectedRoute({redirectTo, fallback, children}: ProtectedRouteProps) {
+function RequireAccount({redirectTo, fallback, children}: RequireAccountProps) {
   const {state: appState} = useAppContext();
 
-  if (appState.hasLoggedIn) {
+  if (appState.account) {
     return <Fragment>{children}</Fragment>;
   }
 
@@ -25,4 +25,4 @@ function ProtectedRoute({redirectTo, fallback, children}: ProtectedRouteProps) {
   );
 }
 
-export default ProtectedRoute;
+export default RequireAccount;
