@@ -40,6 +40,11 @@
       "stylelint-order": "^4.1.0",
       "stylelint-scss": "^3.21.0"
     },
+    "lint-staged": {
+      "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": ["prettier --config ./.prettierrc.js --write"],
+      "src/**/*.{js,jsx,ts,tsx}": ["eslint"],
+      "src/**/*.{css,scss}": ["stylelint"]
+    },
     "eslintConfig": {
       "parser": "@typescript-eslint/parser",
       "plugins": ["react", "react-hooks", "@typescript-eslint", "jsx-a11y"],
