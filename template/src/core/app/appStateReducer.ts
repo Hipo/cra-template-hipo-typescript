@@ -3,7 +3,7 @@ const initialAppState = {
 };
 
 export type AppStateReducerAction = {
-  type: "SET_HAS_LOGGED_IN";
+  type: "SET_LOGGED_IN_ACCOUNT";
   account: null | Record<string, any>;
 };
 
@@ -11,8 +11,7 @@ function appStateReducer(state: typeof initialAppState, action: AppStateReducerA
   let newState = state;
 
   switch (action.type) {
-    case "SET_HAS_LOGGED_IN": {
-
+    case "SET_LOGGED_IN_ACCOUNT": {
       newState = {
         ...state,
         account: action.account

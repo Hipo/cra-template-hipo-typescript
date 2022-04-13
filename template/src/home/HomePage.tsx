@@ -33,7 +33,7 @@ function HomePage() {
 
   function toggleLoginState() {
     dispatch({
-      type: "SET_HAS_LOGGED_IN",
+      type: "SET_LOGGED_IN_ACCOUNT",
       account: account
         ? null
         : {hipo: "https://github.com/Hipo/cra-template-hipo-typescript"}

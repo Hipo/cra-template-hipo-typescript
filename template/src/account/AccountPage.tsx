@@ -25,7 +25,7 @@ function AccountPage() {
 
   function handleLogout() {
     dispatch({
-      type: "SET_HAS_LOGGED_IN",
+      type: "SET_LOGGED_IN_ACCOUNT",
       account: null
     });
   }
