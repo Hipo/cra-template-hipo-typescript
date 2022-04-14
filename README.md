@@ -24,6 +24,11 @@ npx create-react-app my-app --template file:../path/cra-template-hipo-typescript
 
 Where `../projects/cra-template-hipo-typescript` is the relative path of your template folder.
 
+Recommended system versions
+
+- `node 14.x`
+- `npm 7.x`
+
 ## How does it work?
 
 This section briefly describes what the files in the template do. For more detailed and up-to-date information, please refer to:
