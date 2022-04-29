@@ -10,6 +10,11 @@ Short description of the project
 
 This project was created with [Create React App](https://github.com/facebook/create-react-app). Therefore, the usual react-scripts are available in this project.
 
+Recommended system versions
+
+- `node 14.x`
+- `npm 7.x`
+
 ### Install dependencies
 
 - `npm install`
