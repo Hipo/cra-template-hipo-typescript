@@ -21,6 +21,7 @@
       "web-vitals": "^2.1.0",
       "classnames": "^2.3.1",
       "env-cmd": "^10.1.0",
+      "@hipo/react-ui-toolkit": "^1.0.0-beta",
       "react-router-dom": "^5.3.0"
     },
     "devDependencies": {
