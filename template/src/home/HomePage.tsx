@@ -1,39 +1,47 @@
+import "./_home-page.scss";
+
+import {useAppContext} from "../core/app/AppContext";
 import {Button as HipoButton} from "@hipo/react-ui-toolkit";
 
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
 
 function HomePage() {
+  const {
+    state: {account},
+    dispatch
+  } = useAppContext();
+
   return (
     <Page title={"Home"}>
       <PageContent>
         <h1>{"Home"}</h1>
 
         <p>{"This is the home page of the application."}</p>
+
         <p>
           <b>{"Active environment: "}</b>
           {process.env.REACT_APP_BUILD_ENVIRONMENT || "Not defined"}
         </p>
 
-        <br />
+        <div className={"home-page__login-container"}>
+          {account ? <h3>{"Click here to logout"}</h3> : <h3>{"Click here to login"}</h3>}
 
-        <h3>{"Hipo - React UI Toolkit Component Examples"}</h3>
-
-        <div>
-          <HipoButton onClick={onClick}>{"Click Me"}</HipoButton>
-
-          <HipoButton onClick={onClick} isDisabled={true}>
-            {"Click Me - isDisabled"}
+          <HipoButton onClick={toggleLoginState}>
+            {account ? "Logout" : "Login"}
           </HipoButton>
-
-          <HipoButton shouldDisplaySpinner={true}>{"With Spinner"}</HipoButton>
         </div>
       </PageContent>
     </Page>
   );
 
-  function onClick() {
-    console.log("Thank you");
+  function toggleLoginState() {
+    dispatch({
+      type: "SET_LOGGED_IN_ACCOUNT",
+      account: account
+        ? null
+        : {hipo: "https://github.com/Hipo/cra-template-hipo-typescript"}
+    });
   }
 }
 
