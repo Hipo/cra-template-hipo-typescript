@@ -1,12 +1,18 @@
 @import "../../../core/ui/style/_media-queries.scss";
 
 .page-footer {
+  align-items: center;
+
   max-width: var(--page-content-max-width);
 
   margin: auto;
   padding: 36px var(--page-body-horizontal-padding);
 
   border-top: 1px solid var(--grey-50);
+}
+
+.page-footer__logo {
+  width: 75px;
 }
 
 @include for-small-screens {

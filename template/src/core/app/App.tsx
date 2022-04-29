@@ -1,36 +1,39 @@
 import {lazy, Suspense} from "react";
-import {Switch, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 
-import AboutPage from "../../about/AboutPage";
+import AccountPage from "../../account/AccountPage";
 import RouteLoading from "../route/loading/RouteLoading";
+import RequireAccount from "../route/RequireAccount";
 import ROUTES from "../route/routes";
+import {AppContextProvider} from "./AppContext";
+import HomePage from "../../home/HomePage";
+import NotFoundPage from "../route/not-found-page/NotFoundPage";
 
-const HomePage = lazy(
-  () => import(/* webpackChunkName: "home-page" */ "../../home/HomePage")
-);
-const NotFoundPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "not-found-page" */ "../route/not-found-page/NotFoundPage"
-    )
+const HelpPage = lazy(
+  () => import(/* webpackChunkName: "help-page" */ "../../help/HelpPage")
 );
 
 function App() {
   return (
     <Suspense fallback={<RouteLoading />}>
-      <Switch>
-        <Route path={ROUTES.HOME} exact={true}>
-          <HomePage />
-        </Route>
+      <AppContextProvider>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<HomePage />} />
 
-        <Route path={ROUTES.HELP} exact={true}>
-          <AboutPage />
-        </Route>
+          <Route path={ROUTES.HELP} element={<HelpPage />} />
 
-        <Route path={"*"}>
-          <NotFoundPage />
-        </Route>
-      </Switch>
+          <Route
+            path={ROUTES.ACCOUNT}
+            element={
+              <RequireAccount>
+                <AccountPage />
+              </RequireAccount>
+            }
+          />
+
+          <Route path={"*"} element={<NotFoundPage />} />
+        </Routes>
+      </AppContextProvider>
     </Suspense>
   );
 }

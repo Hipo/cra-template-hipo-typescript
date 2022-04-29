@@ -1,5 +1,9 @@
-import {Fragment, useEffect} from "react";
+import "./_home-page.scss";
 
+import {Fragment, useEffect} from "react";
+import {Button as HipoButton} from "@hipo/react-ui-toolkit";
+
+import {useAppContext} from "../core/app/AppContext";
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
 import useAsyncProcess from "../core/network/async-process/useAsyncProcess";
@@ -15,6 +19,10 @@ function HomePage() {
       await runAsyncProcess(organizationApi.getOrganization("hipo"));
     })();
   }, [runAsyncProcess]);
+  const {
+    state: {account},
+    dispatch
+  } = useAppContext();
 
   return (
     <Page title={"Home"}>
@@ -26,6 +34,8 @@ function HomePage() {
 
         <br />
 
+        <p>{"This is the home page of the application."}</p>
+
         <p>
           <b>{"Active environment: "}</b>
           {process.env.REACT_APP_BUILD_ENVIRONMENT || "Not defined"}
@@ -34,6 +44,13 @@ function HomePage() {
         <br />
 
         <AsyncContent requestStates={[state]} content={renderAsyncContent} />
+        <div className={"home-page__login-container"}>
+          {account ? <h3>{"Click here to logout"}</h3> : <h3>{"Click here to login"}</h3>}
+
+          <HipoButton onClick={toggleLoginState}>
+            {account ? "Logout" : "Login"}
+          </HipoButton>
+        </div>
       </PageContent>
     </Page>
   );
@@ -68,6 +85,15 @@ function HomePage() {
     }
 
     return node;
+  }
+
+  function toggleLoginState() {
+    dispatch({
+      type: "SET_LOGGED_IN_ACCOUNT",
+      account: account
+        ? null
+        : {hipo: "https://github.com/Hipo/cra-template-hipo-typescript"}
+    });
   }
 }
 
