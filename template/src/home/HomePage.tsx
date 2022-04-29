@@ -1,6 +1,8 @@
 import "./_home-page.scss";
 
 import {useAppContext} from "../core/app/AppContext";
+import {Button as HipoButton} from "@hipo/react-ui-toolkit";
+
 import Page from "../component/page/Page";
 import PageContent from "../component/page/content/PageContent";
 
@@ -25,7 +27,9 @@ function HomePage() {
         <div className={"home-page__login-container"}>
           {account ? <h3>{"Click here to logout"}</h3> : <h3>{"Click here to login"}</h3>}
 
-          <button onClick={toggleLoginState}>{account ? "Logout" : "Login"}</button>
+          <HipoButton onClick={toggleLoginState}>
+            {account ? "Logout" : "Login"}
+          </HipoButton>
         </div>
       </PageContent>
     </Page>
