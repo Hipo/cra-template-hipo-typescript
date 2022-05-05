@@ -114,6 +114,7 @@ class Fetcher {
 
         if (typeof errorResponse.json === "function") {
           const errorResponseJSON = await errorResponse.json();
+
           finalError = new FetcherError({
             statusCode: errorResponse.status,
             type: errorResponseJSON.type || "ApiError",

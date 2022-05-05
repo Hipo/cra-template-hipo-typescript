@@ -3,7 +3,7 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import useOnUnmount from "../../util/hook/useOnUnmount";
 import {INITIAL_ASYNC_PROCESS_STATE} from "./asyncProcessConstants";
 
-function useAsyncProcess<Data extends any>(options?: UseAsyncProcessOptions<Data>) {
+function useAsyncProcess<Data>(options?: UseAsyncProcessOptions<Data>) {
   const {initialState, shouldResetDataWhenPending = true} = options || {};
   const [asyncState, setAsyncState] = useState<AsyncProcessState<Data>>(
     initialState || INITIAL_ASYNC_PROCESS_STATE

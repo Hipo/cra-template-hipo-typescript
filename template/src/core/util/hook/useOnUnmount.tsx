@@ -1,6 +1,7 @@
 import {useLayoutEffect} from "react";
 
 function useOnUnmount(callback?: VoidFunction) {
+  // eslint-disable-next-line arrow-body-style
   useLayoutEffect(() => {
     return () => {
       if (callback) {
