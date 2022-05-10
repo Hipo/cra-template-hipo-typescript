@@ -8,6 +8,8 @@ import ROUTES from "../route/routes";
 import {AppContextProvider} from "./AppContext";
 import HomePage from "../../home/HomePage";
 import NotFoundPage from "../route/not-found-page/NotFoundPage";
+import {isOnDevEnv} from "../util/environment/environmentUtils";
+import ComponentListPage from "../../component/component-list/ComponentListPage";
 
 const HelpPage = lazy(
   () => import(/* webpackChunkName: "help-page" */ "../../help/HelpPage")
@@ -30,6 +32,15 @@ function App() {
               </RequireAccount>
             }
           />
+
+          {
+            /**
+             * Development only routes, only used on local for testing purposes
+             */
+            isOnDevEnv() && (
+              <Route path={ROUTES.COMPONENT_LIST} element={<ComponentListPage />} />
+            )
+          }
 
           <Route path={"*"} element={<NotFoundPage />} />
         </Routes>
