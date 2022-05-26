@@ -2,16 +2,16 @@
 
 This is the custom TypeScript template of Hipo web team for [Create React App](https://github.com/facebook/create-react-app).
 
-To use this template, add `--template @hipo/cra-template-hipo-typescript` when creating a new app.
+To use this template, add `--template cra-template-hipo-typescript` when creating a new app.
 
 For example:
 
 ```sh
-npx create-react-app my-app --template @hipo/cra-template-hipo-typescript
+npx create-react-app my-app --template cra-template-hipo-typescript
 
 # or
 
-yarn create react-app my-app --template @hipo/cra-template-hipo-typescript
+yarn create react-app my-app --template cra-template-hipo-typescript
 ```
 
 ## Local Development
