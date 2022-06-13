@@ -7,11 +7,9 @@ function ComponentListPage() {
   return (
     <Page title={"Components Page"}>
       <PageContent>
-        <div>
-          <h1>{"Button"}</h1>
+        <h1>{"Button"}</h1>
 
-          <HipoButton onClick={handleButtonClick}>{"Click"}</HipoButton>
-        </div>
+        <HipoButton onClick={handleButtonClick}>{"Click"}</HipoButton>
       </PageContent>
     </Page>
   );
