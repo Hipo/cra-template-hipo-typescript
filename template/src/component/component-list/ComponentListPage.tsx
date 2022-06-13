@@ -10,13 +10,13 @@ function ComponentListPage() {
         <div>
           <h1>{"Button"}</h1>
 
-          <HipoButton onClick={onClickButton}>{"Click"}</HipoButton>
+          <HipoButton onClick={handleButtonClick}>{"Click"}</HipoButton>
         </div>
       </PageContent>
     </Page>
   );
 
-  function onClickButton() {
+  function handleButtonClick() {
     console.log("Clicked!");
   }
 }
