@@ -1,6 +1,6 @@
 import {Fragment} from "react";
 import {Navigate, RouteProps} from "react-router";
-import {To} from "history";
+import {To} from "react-router-dom";
 
 import ROUTES from "./routes";
 import {useAppContext} from "../app/AppContext";

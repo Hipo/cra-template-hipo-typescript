@@ -16,7 +16,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": "18.0.0",
+    "npm": "8.6.0"
   },
   "bugs": {
     "url": "https://github.com/Hipo/cra-template-hipo-typescript/issues"
