@@ -1,6 +1,6 @@
 import "./_home-page.scss";
 
-import {Fragment, useEffect} from "react";
+import {useEffect} from "react";
 import {Button as HipoButton} from "@hipo/react-ui-toolkit";
 
 import {useAppContext} from "../core/app/AppContext";
@@ -12,29 +12,27 @@ import organizationApi from "../examples/organization/api/organizationApi";
 import {Organization} from "../examples/organization/api/organizationApiModels";
 
 function HomePage() {
-  const {state, runAsyncProcess} = useAsyncProcess<Organization>();
-
-  useEffect(() => {
-    (async () => {
-      await runAsyncProcess(organizationApi.getOrganization("hipo"));
-    })();
-  }, [runAsyncProcess]);
   const {
     state: {account},
     dispatch
   } = useAppContext();
+  const {state: getOrganizationState, runAsyncProcess: runGetOrganizationProcess} =
+    useAsyncProcess<Organization>();
+
+  useEffect(() => {
+    runGetOrganizationProcess(organizationApi.getOrganization("hipo"));
+  }, [runGetOrganizationProcess]);
 
   return (
     <Page title={"Home"}>
       <PageContent>
         <h1>{"Home"}</h1>
-        <br />
-
-        <p>{"This is the home page of the application."}</p>
 
         <br />
 
         <p>{"This is the home page of the application."}</p>
+
+        <br />
 
         <p>
           <b>{"Active environment: "}</b>
@@ -43,7 +41,11 @@ function HomePage() {
 
         <br />
 
-        <AsyncContent requestStates={[state]} content={renderAsyncContent} />
+        <AsyncContent
+          requestStates={[getOrganizationState]}
+          content={renderAsyncContent}
+        />
+
         <div className={"home-page__login-container"}>
           {account ? <h3>{"Click here to logout"}</h3> : <h3>{"Click here to login"}</h3>}
 
@@ -56,35 +58,34 @@ function HomePage() {
   );
 
   function renderAsyncContent(status: AsyncContentStatus) {
-    let node = <Fragment />;
-
     switch (status) {
       case "pending":
-        node = <p>{"Loading..."}</p>;
-        break;
+        return <p>{"Loading..."}</p>;
 
       case "error":
-        node = <p>{"An error occured!"}</p>;
-        break;
+        return <p>{"An error occured!"}</p>;
 
       case "success":
-        node = (
+        return (
           <div>
-            <p>{state.data?.description}</p>
+            <h4>{"Hipo"}</h4>
+
+            <p>{getOrganizationState.data?.description}</p>
+
             <br />
 
-            <a href={state.data?.blog} target={"_blank"} rel={"noreferrer"}>
-              {state.data?.blog}
+            <a
+              href={getOrganizationState.data?.blog}
+              target={"_blank"}
+              rel={"noreferrer"}>
+              {getOrganizationState.data?.blog}
             </a>
           </div>
         );
-        break;
 
       default:
-        break;
+        return <></>;
     }
-
-    return node;
   }
 
   function toggleLoginState() {
